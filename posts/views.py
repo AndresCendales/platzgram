@@ -1,6 +1,6 @@
-
+"""Posts for platzigram"""
 #django
-from django.shortcuts import render#recibe un request,template y contexto
+from django.shortcuts import render #recibe un request,template y contexto
 from django.http import HttpResponse
 
 #utilities
