@@ -1,6 +1,6 @@
-
+"""Posts for platzigram"""
 #django
-from django.shortcuts import render#recibe un request,template y contexto
+from django.shortcuts import render #recibe un request,template y contexto
 from django.http import HttpResponse
 
 #utilities
@@ -40,4 +40,4 @@ posts = [
 
 def list_posts(request):
     """List Existing post"""
-    return render(request,'feed.html',{'posts':posts})
+    return render(request,'posts/feed.html',{'posts':posts})

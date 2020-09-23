@@ -28,9 +28,11 @@ def sort_integers(request):
         'numbers': numbers,
         'message' : 'Integers sorted succesfully'
     }
-    return HttpResponse(json.dumps(data, indent=4), 
-            content_type = 'application/json'
-            )
+    
+    return HttpResponse(
+        json.dumps(data, indent=4), 
+        content_type = 'application/json'
+    )
 
 def say_hi(request, name, age):
     """Return a greeting"""
