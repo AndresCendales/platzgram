@@ -58,7 +58,7 @@ ROOT_URLCONF = 'platzigram.urls'
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'templates')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (
     os.path.join('static'),
     )
@@ -71,7 +71,7 @@ STATICFILES_FINDERS = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [STATIC_ROOT],
+        'DIRS': [STATIC_ROOT+'/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
