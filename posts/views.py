@@ -3,6 +3,9 @@
 from django.shortcuts import render #recibe un request,template y contexto
 from django.http import HttpResponse
 
+#Django Auth
+from django.contrib.auth.decorators import login_required
+
 #utilities
 from datetime import datetime
 
@@ -38,6 +41,11 @@ posts = [
 ]
 
 
+@login_required
 def list_posts(request):
-    """List Existing post"""
-    return render(request,'posts/feed.html',{'posts':posts})
+    """List existing posts."""
+    return render(request, 'posts/feed.html', {'posts': posts})
+
+@login_required
+def create_post(request):
+    pass
