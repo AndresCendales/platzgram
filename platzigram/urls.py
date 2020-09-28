@@ -22,7 +22,7 @@ urlpatterns = [
     path('say_hi/<str:name>/<int:age>/',local_views.say_hi, name='hi'),
     
     path('',post_views.list_posts,name='feed'),
-    path('/posts/new/',post_views.create_post,name='create_post'),
+    path('posts/new/',post_views.create_post,name='create_post'),
     
     
     path('users/login/', users_views.login_view,name='login'),
