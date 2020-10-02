@@ -5,16 +5,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-#Exceptions
-from django.db.utils import IntegrityError
-
-#Models
-from django.contrib.auth.models import User
-from users.models import Profile
-
 #forms
-from .forms import ProfileForm
-
+from .forms import ProfileForm, SignUpForm
 def login_view(request):
     """login view"""
     if request.method == 'POST':
@@ -34,29 +26,19 @@ def signup_view(request):
     """Singup View"""
 
     if request.method == 'POST':
-        username = request.POST['username']
-        passwd = request.POST['passwd']
-        passwd_confirmation = request.POST['passwd_confirmation']
-
-        if passwd != passwd_confirmation:
-            return render(request,'users/signup.html',{'error':'Password confirmation does not match'})
-        try:
-            user = User.objects.create_user(username=username, password=passwd)
-        except IntegrityError :
-            return render(request,'users/signup.html',{'error':'Username already exists'})
-
-        user.first_name = request.POST['first_name']
-        user.last_name = request.POST['last_name']
-        user.email = request.POST['email']
-        user.save()
-
-        #Create the profile of the user
-        profile = Profile(user=user)
-        profile.save()
+        form = SignUpForm(request.POST)
         
-        return redirect('login')
-
-    return render(request, 'users/signup.html')
+        if form.is_valid():
+            return redirect('login')
+    else:
+        form = SignUpForm()
+    return render(
+        request=request, 
+        template_name='users/signup.html',
+        context={
+            'form':form
+        }
+    )
 
 @login_required
 def update_profile(request):
