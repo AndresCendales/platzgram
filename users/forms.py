@@ -53,7 +53,6 @@ class SignUpForm(forms.Form):
     def clean (self):
         """Verify password confirmation match"""
         data = super().clean()
-
         password = data['password']
         password_confirmation = data['password_confirmation']
 
@@ -66,11 +65,11 @@ class SignUpForm(forms.Form):
         """Create user and profile"""
         data = self.cleaned_data
         data.pop('password_confirmation')
-
+                
         user = User.objects.create_user(**data)
         profile = Profile(user=user)
         profile.save()
-
+        
 class ProfileForm(forms.Form):
     """Profile Form"""
 
