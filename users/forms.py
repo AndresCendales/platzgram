@@ -53,7 +53,7 @@ class SignUpForm(forms.Form):
     def clean (self):
         """Verify password confirmation match"""
         data = super().clean()
-
+        print(data)
         password = data['password']
         password_confirmation = data['password_confirmation']
 
